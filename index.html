@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year Kitty 🐱🌹</title>
+
+<style>
+body{
+margin:0;height:100vh;font-family:'Segoe UI',sans-serif;
+background:url("https://images.unsplash.com/photo-1519681393784-d120267933ba") center/cover fixed;
+display:flex;justify-content:center;align-items:center;
+overflow:hidden;color:#fff;text-align:center;
+}
+
+body::after{
+content:"";position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,0.6);z-index:-1;
+}
+
+.card{
+background:rgba(0,0,0,0.55);
+padding:30px;border-radius:25px;
+width:90%;max-width:460px;
+box-shadow:0 0 40px rgba(255,255,255,0.25);
+animation:fade 1.2s ease;
+}
+
+h1{font-size:26px;margin-bottom:15px;}
+p{font-size:18px;line-height:1.75;white-space:pre-line;}
+
+button,a.btn{
+margin-top:20px;padding:12px 30px;border:none;border-radius:30px;
+background:#ff6b81;color:white;font-size:16px;
+cursor:pointer;text-decoration:none;
+}
+button:hover,a.btn:hover{background:#ff4757;}
+
+@keyframes fade{
+from{opacity:0;transform:scale(0.9);}
+to{opacity:1;transform:scale(1);}
+}
+
+/* Heartbeat */
+.heart{animation:beat 1.4s infinite;}
+@keyframes beat{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.15);}
+}
+
+/* Roses */
+.rose{
+position:absolute;width:40px;opacity:0.7;
+animation:floatRose 14s linear infinite;
+pointer-events:none;
+}
+@keyframes floatRose{
+0%{transform:translateY(110vh) rotate(0);opacity:0;}
+20%{opacity:.7;}
+100%{transform:translateY(-10vh) rotate(360deg);opacity:0;}
+}
+
+/* Snow */
+.snow{
+position:fixed;top:-10px;
+color:white;font-size:14px;
+animation:fall linear infinite;
+}
+@keyframes fall{
+to{transform:translateY(110vh);}
+}
+
+.gif,.photo{
+width:130px;border-radius:15px;margin:12px auto;
+box-shadow:0 0 18px rgba(255,255,255,0.3);
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/audio/2023/03/13/audio_8f16a0e5c7.mp3">
+</audio>
+
+<audio id="typeSound">
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_2d4edfd7a4.mp3">
+</audio>
+
+<div class="card" id="content">
+<h1>🎆 Happy New Year Kitty 🐱🌹</h1>
+<p id="text"></p>
+<button onclick="start()">Start 🎵</button>
+</div>
+
+<script>
+// Snow
+setInterval(()=>{
+const s=document.createElement("div");
+s.className="snow";
+s.innerHTML="❄";
+s.style.left=Math.random()*100+"vw";
+s.style.animationDuration=5+Math.random()*5+"s";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),10000);
+},300);
+
+// Roses
+setInterval(()=>{
+const r=document.createElement("img");
+r.src="https://pngimg.com/uploads/rose/rose_PNG66729.png";
+r.className="rose";
+r.style.left=Math.random()*100+"vw";
+r.style.animationDuration=12+Math.random()*8+"s";
+document.body.appendChild(r);
+setTimeout(()=>r.remove(),20000);
+},1200);
+
+function typeText(el,text,i=0){
+if(i<text.length){
+el.innerHTML+=text.charAt(i);
+typeSound.play();
+setTimeout(()=>typeText(el,text,i+1),50);
+}
+}
+
+typeText(text,
+"Naya saal aa gaya 🌙\nAur sabse pehle…\nmain tumhe dil se wish karna chahta tha 🌸");
+
+function start(){
+music.play();
+content.innerHTML=`
+<h1>Kitty 🐱✨</h1>
+<img class="gif" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif">
+<p id="t1"></p>
+<button onclick="next2()">Next 🌙</button>`;
+typeText(t1,"Tumhare saath yeh New Year\nzyada soft, calm\naur special lag raha hai 🌹");
+}
+
+function next2(){
+content.innerHTML=`
+<h1>Little things 🌸</h1>
+<img class="gif" src="https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif">
+<p id="t2"></p>
+<button onclick="next3()">Continue ✨</button>`;
+typeText(t2,
+"Tum itna so jaati ho 😴\nlagta hai neend bhi tumhari fan hai 🐾\n\nAur non-veg ka pyaar 🍗\nbilkul tum jaisa hi — pure comfort 🌙");
+}
+
+function next3(){
+content.innerHTML=`
+<h1 class="heart">I love you ❤️</h1>
+<p id="t3"></p>
+<button onclick="next4()">Read this 🌹</button>`;
+typeText(t3,
+"Main chahta hoon\nyeh naya saal\nmain tumhare saath shuru karun 🌙");
+}
+
+function next4(){
+content.innerHTML=`
+<h1>For you 🌸</h1>
+<p id="letter"></p>
+<button onclick="next5()">Puku 🐱</button>`;
+typeText(letter,
+"Dear Kitty,\n\nTumhari thand pasand,\nmountains ka pyaar,\naur cats ke liye softness 🐱\nmujhe tumhare aur paas laata hai.\n\nTum overthink karti ho,\npar main samajhta hoon.\nHum dono CA kar rahe hain,\nek hi struggle, ek hi sapna.\n\nTumhare saath future\nscary nahi,\nbalki comforting lagta hai 🌙\n\n— Omkar");
+}
+
+function next5(){
+content.innerHTML=`
+<h1>Puku 🐾</h1>
+<img class="photo" src="https://raw.githubusercontent.com/omkarchoudhary421/formylove/main/puku1.jpeg">
+<p>
+Hi Kitty di 😊\n
+Bhaiya aapke saath bahut khush rehte hain 🌸
+</p>
+<button onclick="next6()">Last 🌙</button>`;
+}
+
+function next6(){
+content.innerHTML=`
+<h1 class="heart">I love you ❤️</h1>
+<img class="photo" src="https://raw.githubusercontent.com/omkarchoudhary421/formylove/main/puku2.jpeg">
+<p>
+Bas itna kehna tha 🌙\n
+Aap bhaiya ke liye\nbahut special ho 🐱
+</p>
+<a class="btn" href="https://wa.me/918271108489">Message me 💬</a>`;
+}
+</script>
+
+</body>
+</html>
